@@ -144,9 +144,21 @@ class BasicMQTTInterface(AbstractMQTTInterface):
             ),
             self._mqtt_handle_send_panic,
         )
+        self.subscribe_callback(
+            get_control_topic_prefix("system")+"/#",
+            self._mqtt_handle_system_control,
+        )
 
         if not self.connected_future.done():
             self.connected_future.set_result(True)
+
+    @mqtt_handle_decorator
+    async def _mqtt_handle_system_control(self, prep: ParsedMessage):
+        topics, element, command = prep
+        if element == 'mqtt' and prep.content == 're-publish':
+            logger.info("Re-publishing all states")
+            for k, v in self.republish_cache.items():
+            self.publish(k, v["value"], v["qos"], v["retain"])
 
     @mqtt_handle_decorator
     async def _mqtt_handle_notifications(self, prep: ParsedMessage):
