@@ -24,10 +24,3 @@ combine_as_imports = true
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 
-[project]
-name = "paradox"
-version = "3.7.0"
-description = "Paradox PAI"
-
-[project.scripts]
-pai-service = "paradox.console_scripts.pai_run:main"
