@@ -4,7 +4,7 @@ flake8
 paho_mqtt>=1.5.0,<2
 
 pre-commit
-pushbullet.py>=0.11.0
+# pushbullet.py>=0.11.0
 pyserial>=3.4
 pyserial-asyncio>=0.4
 python-slugify>=4.0.1
@@ -17,4 +17,4 @@ pyyaml>=5.2.0
 requests>=2.20.0
 require-python-3
 tox
-ws4py>=0.4.2
+# ws4py>=0.4.2
