@@ -115,13 +115,14 @@ class HandlerRegistry:
                     handled = True
                     await handler(data)
             except AlreadyHandledError:
-                logger.warning("Already handled")
+                logger.debug("Already handled")
             except Exception:
                 logger.exception("Exception caught during message handling")
                 raise
 
         if not handled and not self._should_ignore_no_handlers:
-            logger.error(
+            logger.error("No handler for message {}".format(data.fields.value.po.command))
+            logger.debug(
                 "No handler for message {}\nDetail: {}".format(
                     data.fields.value.po.command, data
                 )
