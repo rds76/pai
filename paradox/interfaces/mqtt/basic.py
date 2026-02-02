@@ -158,7 +158,7 @@ class BasicMQTTInterface(AbstractMQTTInterface):
         if element == 'mqtt' and prep.content == 're-publish':
             logger.info("Re-publishing all states")
             for k, v in self.republish_cache.items():
-            self.publish(k, v["value"], v["qos"], v["retain"])
+                self.publish(k, v["value"], v["qos"], v["retain"])
 
     @mqtt_handle_decorator
     async def _mqtt_handle_notifications(self, prep: ParsedMessage):
